@@ -19,13 +19,12 @@ class ZFJChatInputTool: UIView {
     var leftImg: UIImage?
     //右边按钮的图片
     var rightImg: UIImage?
-    //选择的图片
-    var selectImg: UIImage?
     var title: String = ""
-    //是否显示语音 默认显示
-    var isShowVoice: Bool = false
-    //是否显示相机 默认显示
-    var isShowCamera: Bool = false
+    //录音存放的路径
+    lazy var recordUrl: URL = {
+        let thisRecordUrl = URL(string: NSTemporaryDirectory() + ("record.caf"))
+        return thisRecordUrl!
+    }()
     
     //------------
     //语音界面
@@ -49,10 +48,15 @@ class ZFJChatInputTool: UIView {
     func keyboardBtnClick(_ button: UIButton) {
         recordingView.isHidden = true
     }
-    
-    var pickerController: UIImagePickerController?
-    var audioRecorder: AVAudioRecorder!
-    var voiceShowLab: UILabel?
+    var recorder: AVAudioRecorder!
+    var voiceShowLab: UILabel = {
+        let voiceLab = UILabel()
+        voiceLab.textAlignment = .center
+        voiceLab.font = UIFont(name: "STHeitiSC-Light", size: CGFloat(14))
+        voiceLab.text = "手指上滑,取消发送"
+        voiceLab.textColor = UIColor.white
+        return voiceLab
+    }()
     //录音状态背景图
     lazy var callView: UIView = {
         let myCallView = UIView()
@@ -149,14 +153,6 @@ class ZFJChatInputTool: UIView {
         print("显示输入框，这里面就不写了")
     }
 
-    //获取音频会话单例
-    let audioSession = AVAudioSession.sharedInstance()
-    //定义音频的编码参数
-    let recordSettings = [AVSampleRateKey : NSNumber(value: Float(44100.0)),//声音采样率
-        AVFormatIDKey : NSNumber(value: Int32(kAudioFormatMPEG4AAC)),//编码格式
-        AVNumberOfChannelsKey : NSNumber(value: 1),//采集音轨
-        AVEncoderAudioQualityKey : NSNumber(value: Int32(AVAudioQuality.medium.rawValue))]//音频质量
-    
     override init(frame:CGRect) {
         super.init(frame: frame)
         initUI()
@@ -166,31 +162,31 @@ class ZFJChatInputTool: UIView {
         backgroundColor = UIColor(red: CGFloat(0.976), green: CGFloat(0.976), blue: CGFloat(0.976), alpha: CGFloat(1.00))
         layer.borderColor = UIColor(red: CGFloat(0.847), green: CGFloat(0.847), blue: CGFloat(0.847), alpha: CGFloat(1.00)).cgColor
         layer.borderWidth = 0.5
-        addSubview(lefyImgBtn)
-        addSubview(rightImgBtn)
-        addSubview(inputBoxBtn)
+        addSubview(self.lefyImgBtn)
+        addSubview(self.rightImgBtn)
+        addSubview(self.inputBoxBtn)
         //录音相关
         setRecordingAbout()
-    }
-    
-    func hideInputView() {
-        self.recordingView.isHidden = true
-        selectImg = nil
     }
 
     func showInputView() {
         print("显示输入框，这里面就不写了")
     }
 
-    
-    
     func presentAlertController(){}
     
     // MARK: - 以下是录音相关
     func setRecordingAbout(){
+        endState = 1
+        //初始化录音器
+        let session:AVAudioSession = AVAudioSession.sharedInstance()
+        //设置录音类型
+        try! session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        //设置支持后台
+        try! session.setActive(true)
         //首先要判断是否允许访问麦克风
         var isAllowed = false
-        audioSession.requestRecordPermission { (allowed) in
+        session.requestRecordPermission { (allowed) in
             if !allowed{
                 let alertView = UIAlertView(title: "无法访问您的麦克风" , message: "请到设置 -> 隐私 -> 麦克风 ，打开访问权限", delegate: nil, cancelButtonTitle: "取消", otherButtonTitles: "好的")
                 alertView.show()
@@ -203,15 +199,20 @@ class ZFJChatInputTool: UIView {
             return //如果没有访问权限 返回
         }
         
-        do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-            try audioRecorder = AVAudioRecorder(url: self.directoryURL()! as URL,settings: recordSettings)
-        } catch let error as NSError{
-            print(error)
+        let recorderSeetingsDic = [
+                AVFormatIDKey: NSNumber(value: kAudioFormatMPEG4AAC),
+                AVNumberOfChannelsKey: 2, //录音的声道数，立体声为双声道
+                AVEncoderAudioQualityKey : AVAudioQuality.max.rawValue,
+                AVEncoderBitRateKey : 320000,
+                AVSampleRateKey : 44100.0 //录音器每秒采集的录音样本数
+        ] as [String : Any]
+        
+        recorder = try! AVAudioRecorder(url: self.recordUrl, settings: recorderSeetingsDic)
+        if recorder == nil {
             return
         }
-        
-        audioRecorder?.isMeteringEnabled = true
+        //开启仪表计数功能
+        recorder?.isMeteringEnabled = true
         //语音相关控件
         addSubview(self.recordingView)
         self.recordingView.isHidden = true
@@ -219,22 +220,20 @@ class ZFJChatInputTool: UIView {
         
         let inputBoxBtn_WID: CGFloat = ScreenWidth - KZFJChatInputTool_Space * 3 - KBothSidesBtn_WID
         let underPressView = UIView(frame: CGRect(x: CGFloat((self.keyBoardBtn.frame.maxX) + KZFJChatInputTool_Space), y: CGFloat((KZFJChatInputTool_HEI - KBothSidesBtn_WID) / 2), width: inputBoxBtn_WID, height: CGFloat(KBothSidesBtn_WID)))
+        
         self.pressView.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: inputBoxBtn_WID, height: CGFloat(KBothSidesBtn_WID))
         underPressView.addSubview(self.pressView)
-        
         self.recordingView.addSubview(underPressView)
+        
         let presss = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress))
         underPressView.addGestureRecognizer(presss)
         
         //录音状态背景图
         addSubview(self.callView)
         self.callView.isHidden = true
-        voiceShowLab = UILabel(frame: CGRect(x: CGFloat(0), y: CGFloat(KCallViewWID - 40), width: CGFloat(KCallViewWID), height: CGFloat(40)))
-        voiceShowLab?.textAlignment = .center
-        voiceShowLab?.font = UIFont(name: "STHeitiSC-Light", size: CGFloat(14))
-        voiceShowLab?.text = "手指上滑,取消发送"
-        voiceShowLab?.textColor = UIColor.white
-        self.callView.addSubview(voiceShowLab!)
+        
+        self.voiceShowLab.frame = CGRect(x: CGFloat(0), y: CGFloat(KCallViewWID - 40), width: CGFloat(KCallViewWID), height: CGFloat(40))
+        self.callView.addSubview(self.voiceShowLab)
         
         self.imgView.frame = CGRect(x: CGFloat((KCallViewWID - 30) / 2), y: CGFloat((KCallViewWID - 90) / 2), width: CGFloat(30), height: CGFloat(70))
         self.callView.addSubview(self.imgView)
@@ -246,30 +245,15 @@ class ZFJChatInputTool: UIView {
         self.callView.addSubview(self.myMaskView)
     }
     
-    func directoryURL() -> NSURL? {
-        //定义并构建一个url来保存音频，音频文件名为ddMMyyyyHHmmss.caf，根据时间来设置存储文件名
-        let currentDateTime = NSDate()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "ddMMyyyyHHmmss"
-        let recordingName = formatter.string(from: currentDateTime as Date)+".caf"
-        
-        let fileManager = FileManager.default
-        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentDirectory = urls[0] as NSURL
-        let soundURL = documentDirectory.appendingPathComponent(recordingName)
-        return soundURL as NSURL?
-    }
-    
     func longPress(_ press: UILongPressGestureRecognizer) {
-        do{
-            try! audioSession.setCategory(AVAudioSessionCategorySoloAmbient)
-        }
         if(press.state == UIGestureRecognizerState.began){
-            //开始录音
-            self.audioRecorder?.deleteRecording()
             self.callView.isHidden = false
-            self.audioRecorder?.record()
-            self.timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(changeImage), userInfo: nil, repeats: true)
+            recorder!.prepareToRecord()//准备录音
+            recorder!.record()//开始录音
+            //启动定时器，定时更新录音音量
+            self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self,
+                                               selector: #selector(changeImage),
+                                               userInfo: nil, repeats: true)
         }else if(press.state == UIGestureRecognizerState.changed){
             //录音正在进行
             self.pressView.text = "松开  结束"
@@ -278,7 +262,7 @@ class ZFJChatInputTool: UIView {
             if point.y < tempPoint.y - 10 {
                 endState = 0
                 self.yinjieBtn.isHidden = true
-                voiceShowLab?.text = "松开手指,取消发送"
+                self.voiceShowLab.text = "松开手指,取消发送"
                 self.imgView.image = UIImage(named: "ZFJRevokeIcon")
                 if !point.equalTo(tempPoint) && point.y < tempPoint.y - 8 {
                     tempPoint = point
@@ -287,7 +271,7 @@ class ZFJChatInputTool: UIView {
             else if point.y > tempPoint.y + 10 {
                 endState = 1
                 self.yinjieBtn.isHidden = false
-                voiceShowLab?.text = "手指上滑,取消发送"
+                self.voiceShowLab.text = "手指上滑,取消发送"
                 self.imgView.image = UIImage(named: "ZFJMicrophoneIcon")
                 if !point.equalTo(tempPoint) && point.y > tempPoint.y + 8 {
                     tempPoint = point
@@ -296,9 +280,10 @@ class ZFJChatInputTool: UIView {
         }else{
             //取消或者结束录音
             self.callView.isHidden = true
+            recorder?.stop()
+            recorder = nil
             timer?.invalidate()
             timer = nil
-            audioRecorder?.stop()
             endPress()
         }
     }
@@ -306,25 +291,21 @@ class ZFJChatInputTool: UIView {
     func endPress(){
         self.pressView.text = "按住  说话"
         self.pressView.textColor = UIColor(red: CGFloat(0.592), green: CGFloat(0.592), blue: CGFloat(0.592), alpha: CGFloat(1.00))
-        do{
-            try! audioSession.setCategory(AVAudioSessionCategoryPlayback)
-        }
         if(endState == 0){
             //取消发送
             endState = 1
             self.yinjieBtn.isHidden = false
-            voiceShowLab?.text = "手指上滑,取消发送"
+            self.voiceShowLab.text = "手指上滑,取消发送"
             self.imgView.image = UIImage(named: "ZFJMicrophoneIcon")
         }else if(endState == 1){
-            print(self.directoryURL() as Any)
+            print(self.recordUrl as Any)
         }
     }
     
     // MARK: - 改变现实的图片
     func changeImage() {
-        audioRecorder?.updateMeters()
-        var avg: Float = audioRecorder!.averagePower(forChannel: 0)
-        print(avg)
+        recorder!.updateMeters() // 刷新音量数据
+        var avg: Float = recorder!.averagePower(forChannel: 0) //获取音量的平均值
         let minValue: Float = -30
         let range: Float = 30
         let outRange: Float = 100
@@ -333,9 +314,7 @@ class ZFJChatInputTool: UIView {
         }
         let decibels: CGFloat = CGFloat((avg + range) / range * outRange)
         let maskViewY = CGFloat(self.yinjieBtn.frame.size.height - decibels * self.yinjieBtn.frame.size.height / 100.0)
-        
-        print(maskViewY)
-        
+
         self.myMaskView.layer.frame = CGRect(x: CGFloat(0), y: maskViewY, width: CGFloat(yinjieBtn.frame.size.width), height: CGFloat(yinjieBtn.frame.size.height))
         self.yinjieBtn.layer.mask = self.myMaskView.layer
     }

@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController,ZFJVoiceBubbleDelegate {
+    var voiceMegBtn: ZFJVoiceBubble!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         uiConfig()
@@ -26,8 +28,6 @@ class ViewController: UIViewController,ZFJVoiceBubbleDelegate {
         let myFrame = CGRect(x: 0, y: ScreenHeight - CGFloat(49), width: ScreenWidth, height: CGFloat(49))
         let chatInputTool = ZFJChatInputTool(frame: myFrame)
         chatInputTool.title = "评论"
-        chatInputTool.isShowVoice = false
-        chatInputTool.isShowCamera = false
         view.addSubview(chatInputTool)
 //        chatInputTool.sendOutBtnAction = {(_ content: String, _ selectImg: UIImage, _ voiceUrl: URL) -> Void in
 //            print("content = \(content)")
@@ -36,19 +36,13 @@ class ViewController: UIViewController,ZFJVoiceBubbleDelegate {
 //            //评论
 //            weakSelf.dealWithMedias(with: content, image: selectImg, voiceUrl: voiceUrl)
 //        }
-//        chatInputTool.cancelBtnAction = {() -> Void in
-//            commentsIndex = 2
-//        }
     }
     
     func uiConfig(){
         self.title = "首页"
-//        let urlString = "file:///var/mobile/Containers/Data/Application/CDBE96C0-DEDE-4EF2-8696-06E0981468FE/Documents/19052017174407.caf"
-//        let url = NSURL(string:urlString)
         let myFrame = CGRect(x: CGFloat((ScreenWidth - 250) / 2), y: CGFloat(200), width: CGFloat(150), height: CGFloat(30))
-        let voiceMegBtn = ZFJVoiceBubble.init(frame: myFrame)
+        voiceMegBtn = ZFJVoiceBubble.init(frame: myFrame)
         voiceMegBtn.contentURL = URL(string: "http://7xszyu.com1.z0.glb.clouddn.com/media_blog_9250_1488873184.mp3")
-        //voiceMegBtn.contentURL = url! as URL
         voiceMegBtn.delegate = self
         voiceMegBtn.isHaveBar = true
         voiceMegBtn.userName = "墨小北"
