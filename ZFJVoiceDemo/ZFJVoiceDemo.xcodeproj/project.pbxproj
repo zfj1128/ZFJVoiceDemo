@@ -15,6 +15,23 @@
 		9D1DDABA1ECE7F8000655DDE /* ZFJVoiceDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1DDAB91ECE7F8000655DDE /* ZFJVoiceDemoTests.swift */; };
 		9D1DDAC51ECE7F8000655DDE /* ZFJVoiceDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1DDAC41ECE7F8000655DDE /* ZFJVoiceDemoUITests.swift */; };
 		9D1DDAD51ECE81B200655DDE /* ZFJVoiceBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1DDAD41ECE81B200655DDE /* ZFJVoiceBubble.swift */; };
+		9D1DDAD91ECED58700655DDE /* ZFJChatInputTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1DDAD81ECED58700655DDE /* ZFJChatInputTool.swift */; };
+		9D1DDAEC1ECEE81300655DDE /* ZFJKeyBoardBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDADC1ECEE81300655DDE /* ZFJKeyBoardBtn@2x.png */; };
+		9D1DDAED1ECEE81300655DDE /* ZFJKeyBoardBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDADD1ECEE81300655DDE /* ZFJKeyBoardBtn@3x.png */; };
+		9D1DDAEE1ECEE81300655DDE /* ZFJLeftCamraBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDADE1ECEE81300655DDE /* ZFJLeftCamraBtn@2x.png */; };
+		9D1DDAEF1ECEE81300655DDE /* ZFJLeftCamraBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDADF1ECEE81300655DDE /* ZFJLeftCamraBtn@3x.png */; };
+		9D1DDAF01ECEE81300655DDE /* ZFJLeftVoice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDAE01ECEE81300655DDE /* ZFJLeftVoice@2x.png */; };
+		9D1DDAF11ECEE81300655DDE /* ZFJLeftVoice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDAE11ECEE81300655DDE /* ZFJLeftVoice@3x.png */; };
+		9D1DDAF21ECEE81300655DDE /* ZFJLeftVoiceBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDAE21ECEE81300655DDE /* ZFJLeftVoiceBtn@2x.png */; };
+		9D1DDAF31ECEE81300655DDE /* ZFJLeftVoiceBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDAE31ECEE81300655DDE /* ZFJLeftVoiceBtn@3x.png */; };
+		9D1DDAF41ECEE81300655DDE /* ZFJMicrophoneIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDAE41ECEE81300655DDE /* ZFJMicrophoneIcon@2x.png */; };
+		9D1DDAF51ECEE81300655DDE /* ZFJMicrophoneIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDAE51ECEE81300655DDE /* ZFJMicrophoneIcon@3x.png */; };
+		9D1DDAF61ECEE81300655DDE /* ZFJRevokeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDAE61ECEE81300655DDE /* ZFJRevokeIcon@2x.png */; };
+		9D1DDAF71ECEE81300655DDE /* ZFJRevokeIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDAE71ECEE81300655DDE /* ZFJRevokeIcon@3x.png */; };
+		9D1DDAF81ECEE81300655DDE /* ZFJRightImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDAE81ECEE81300655DDE /* ZFJRightImg@2x.png */; };
+		9D1DDAF91ECEE81300655DDE /* ZFJRightImg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDAE91ECEE81300655DDE /* ZFJRightImg@3x.png */; };
+		9D1DDAFA1ECEE81300655DDE /* ZFJVolumeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDAEA1ECEE81300655DDE /* ZFJVolumeIcon@2x.png */; };
+		9D1DDAFB1ECEE81300655DDE /* ZFJVolumeIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDAEB1ECEE81300655DDE /* ZFJVolumeIcon@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +66,23 @@
 		9D1DDAC41ECE7F8000655DDE /* ZFJVoiceDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZFJVoiceDemoUITests.swift; sourceTree = "<group>"; };
 		9D1DDAC61ECE7F8000655DDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D1DDAD41ECE81B200655DDE /* ZFJVoiceBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFJVoiceBubble.swift; sourceTree = "<group>"; };
+		9D1DDAD81ECED58700655DDE /* ZFJChatInputTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFJChatInputTool.swift; sourceTree = "<group>"; };
+		9D1DDADC1ECEE81300655DDE /* ZFJKeyBoardBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJKeyBoardBtn@2x.png"; sourceTree = "<group>"; };
+		9D1DDADD1ECEE81300655DDE /* ZFJKeyBoardBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJKeyBoardBtn@3x.png"; sourceTree = "<group>"; };
+		9D1DDADE1ECEE81300655DDE /* ZFJLeftCamraBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJLeftCamraBtn@2x.png"; sourceTree = "<group>"; };
+		9D1DDADF1ECEE81300655DDE /* ZFJLeftCamraBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJLeftCamraBtn@3x.png"; sourceTree = "<group>"; };
+		9D1DDAE01ECEE81300655DDE /* ZFJLeftVoice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJLeftVoice@2x.png"; sourceTree = "<group>"; };
+		9D1DDAE11ECEE81300655DDE /* ZFJLeftVoice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJLeftVoice@3x.png"; sourceTree = "<group>"; };
+		9D1DDAE21ECEE81300655DDE /* ZFJLeftVoiceBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJLeftVoiceBtn@2x.png"; sourceTree = "<group>"; };
+		9D1DDAE31ECEE81300655DDE /* ZFJLeftVoiceBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJLeftVoiceBtn@3x.png"; sourceTree = "<group>"; };
+		9D1DDAE41ECEE81300655DDE /* ZFJMicrophoneIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJMicrophoneIcon@2x.png"; sourceTree = "<group>"; };
+		9D1DDAE51ECEE81300655DDE /* ZFJMicrophoneIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJMicrophoneIcon@3x.png"; sourceTree = "<group>"; };
+		9D1DDAE61ECEE81300655DDE /* ZFJRevokeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJRevokeIcon@2x.png"; sourceTree = "<group>"; };
+		9D1DDAE71ECEE81300655DDE /* ZFJRevokeIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJRevokeIcon@3x.png"; sourceTree = "<group>"; };
+		9D1DDAE81ECEE81300655DDE /* ZFJRightImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJRightImg@2x.png"; sourceTree = "<group>"; };
+		9D1DDAE91ECEE81300655DDE /* ZFJRightImg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJRightImg@3x.png"; sourceTree = "<group>"; };
+		9D1DDAEA1ECEE81300655DDE /* ZFJVolumeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJVolumeIcon@2x.png"; sourceTree = "<group>"; };
+		9D1DDAEB1ECEE81300655DDE /* ZFJVolumeIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJVolumeIcon@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				9D1DDAD61ECE92C500655DDE /* images */,
+				9D1DDAD71ECED57500655DDE /* ZFJChatInputTool */,
 				9D1DDAD31ECE817A00655DDE /* ZFJVoiceBubble */,
 			);
 			path = ZFJClass;
@@ -148,8 +183,32 @@
 		9D1DDAD61ECE92C500655DDE /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9D1DDADC1ECEE81300655DDE /* ZFJKeyBoardBtn@2x.png */,
+				9D1DDADD1ECEE81300655DDE /* ZFJKeyBoardBtn@3x.png */,
+				9D1DDADE1ECEE81300655DDE /* ZFJLeftCamraBtn@2x.png */,
+				9D1DDADF1ECEE81300655DDE /* ZFJLeftCamraBtn@3x.png */,
+				9D1DDAE01ECEE81300655DDE /* ZFJLeftVoice@2x.png */,
+				9D1DDAE11ECEE81300655DDE /* ZFJLeftVoice@3x.png */,
+				9D1DDAE21ECEE81300655DDE /* ZFJLeftVoiceBtn@2x.png */,
+				9D1DDAE31ECEE81300655DDE /* ZFJLeftVoiceBtn@3x.png */,
+				9D1DDAE41ECEE81300655DDE /* ZFJMicrophoneIcon@2x.png */,
+				9D1DDAE51ECEE81300655DDE /* ZFJMicrophoneIcon@3x.png */,
+				9D1DDAE61ECEE81300655DDE /* ZFJRevokeIcon@2x.png */,
+				9D1DDAE71ECEE81300655DDE /* ZFJRevokeIcon@3x.png */,
+				9D1DDAE81ECEE81300655DDE /* ZFJRightImg@2x.png */,
+				9D1DDAE91ECEE81300655DDE /* ZFJRightImg@3x.png */,
+				9D1DDAEA1ECEE81300655DDE /* ZFJVolumeIcon@2x.png */,
+				9D1DDAEB1ECEE81300655DDE /* ZFJVolumeIcon@3x.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		9D1DDAD71ECED57500655DDE /* ZFJChatInputTool */ = {
+			isa = PBXGroup;
+			children = (
+				9D1DDAD81ECED58700655DDE /* ZFJChatInputTool.swift */,
+			);
+			path = ZFJChatInputTool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +321,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D1DDAF71ECEE81300655DDE /* ZFJRevokeIcon@3x.png in Resources */,
+				9D1DDAF41ECEE81300655DDE /* ZFJMicrophoneIcon@2x.png in Resources */,
+				9D1DDAEE1ECEE81300655DDE /* ZFJLeftCamraBtn@2x.png in Resources */,
+				9D1DDAED1ECEE81300655DDE /* ZFJKeyBoardBtn@3x.png in Resources */,
+				9D1DDAF81ECEE81300655DDE /* ZFJRightImg@2x.png in Resources */,
 				9D1DDAAF1ECE7F8000655DDE /* LaunchScreen.storyboard in Resources */,
+				9D1DDAFA1ECEE81300655DDE /* ZFJVolumeIcon@2x.png in Resources */,
+				9D1DDAF01ECEE81300655DDE /* ZFJLeftVoice@2x.png in Resources */,
+				9D1DDAF31ECEE81300655DDE /* ZFJLeftVoiceBtn@3x.png in Resources */,
+				9D1DDAF11ECEE81300655DDE /* ZFJLeftVoice@3x.png in Resources */,
+				9D1DDAEC1ECEE81300655DDE /* ZFJKeyBoardBtn@2x.png in Resources */,
+				9D1DDAF61ECEE81300655DDE /* ZFJRevokeIcon@2x.png in Resources */,
 				9D1DDAAC1ECE7F8000655DDE /* Assets.xcassets in Resources */,
+				9D1DDAEF1ECEE81300655DDE /* ZFJLeftCamraBtn@3x.png in Resources */,
+				9D1DDAF21ECEE81300655DDE /* ZFJLeftVoiceBtn@2x.png in Resources */,
+				9D1DDAF91ECEE81300655DDE /* ZFJRightImg@3x.png in Resources */,
 				9D1DDAAA1ECE7F8000655DDE /* Main.storyboard in Resources */,
+				9D1DDAF51ECEE81300655DDE /* ZFJMicrophoneIcon@3x.png in Resources */,
+				9D1DDAFB1ECEE81300655DDE /* ZFJVolumeIcon@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D1DDAA71ECE7F8000655DDE /* ViewController.swift in Sources */,
+				9D1DDAD91ECED58700655DDE /* ZFJChatInputTool.swift in Sources */,
 				9D1DDAD51ECE81B200655DDE /* ZFJVoiceBubble.swift in Sources */,
 				9D1DDAA51ECE7F8000655DDE /* AppDelegate.swift in Sources */,
 			);

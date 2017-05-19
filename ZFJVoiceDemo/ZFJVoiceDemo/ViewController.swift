@@ -12,6 +12,7 @@ class ViewController: UIViewController,ZFJVoiceBubbleDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         uiConfig()
+        disposeChatInputToolReturnData()
     }
     
     lazy var zyTableView: UITableView = {
@@ -20,6 +21,23 @@ class ViewController: UIViewController,ZFJVoiceBubbleDelegate {
         tempTableView.dataSource = self as? UITableViewDataSource
         return tempTableView
     }()
+    
+    func disposeChatInputToolReturnData() {
+        let chatInputTool = ZFJChatInputTool()
+        chatInputTool.title = "评论"
+        chatInputTool.isShowVoice = false
+        chatInputTool.isShowCamera = false
+//        chatInputTool.sendOutBtnAction = {(_ content: String, _ selectImg: UIImage, _ voiceUrl: URL) -> Void in
+//            print("content = \(content)")
+//            print("selectImg = \(selectImg)")
+//            print("voiceUrl = \(voiceUrl)")
+//            //评论
+//            weakSelf.dealWithMedias(with: content, image: selectImg, voiceUrl: voiceUrl)
+//        }
+//        chatInputTool.cancelBtnAction = {() -> Void in
+//            commentsIndex = 2
+//        }
+    }
     
     func uiConfig(){
         self.title = "首页"
