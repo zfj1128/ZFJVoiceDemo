@@ -14,17 +14,16 @@ let KZFJChatInputTool_Space : CGFloat = 10  //控件距离两边的距离
 let KBothSidesBtn_WID : CGFloat = 36        //左右两边按钮的宽高
 let KCallViewWID : CGFloat = 166
 
+typealias sendOutBtnClick = (_ voiceUrl: URL) -> Void
+
 class ZFJChatInputTool: UIView {
+    var sendURLAction: sendOutBtnClick?
     //左边按钮的图片
     var leftImg: UIImage?
     //右边按钮的图片
     var rightImg: UIImage?
-    var title: String = ""
     //录音存放的路径
-    lazy var recordUrl: URL = {
-        let thisRecordUrl = URL(string: NSTemporaryDirectory() + ("record.caf"))
-        return thisRecordUrl!
-    }()
+    var recordUrl: URL!
     
     //------------
     //语音界面
@@ -207,10 +206,14 @@ class ZFJChatInputTool: UIView {
                 AVSampleRateKey : 44100.0 //录音器每秒采集的录音样本数
         ] as [String : Any]
         
+        //语音地址
+        self.recordUrl = URL(string: NSTemporaryDirectory() + ("\(getTheTimestamp()).caf"))
+        
         recorder = try! AVAudioRecorder(url: self.recordUrl, settings: recorderSeetingsDic)
         if recorder == nil {
             return
         }
+
         //开启仪表计数功能
         recorder?.isMeteringEnabled = true
         //语音相关控件
@@ -281,7 +284,7 @@ class ZFJChatInputTool: UIView {
             //取消或者结束录音
             self.callView.isHidden = true
             recorder?.stop()
-            recorder = nil
+            //recorder = nil
             timer?.invalidate()
             timer = nil
             endPress()
@@ -298,7 +301,7 @@ class ZFJChatInputTool: UIView {
             self.voiceShowLab.text = "手指上滑,取消发送"
             self.imgView.image = UIImage(named: "ZFJMicrophoneIcon")
         }else if(endState == 1){
-            print(self.recordUrl as Any)
+            self.sendURLAction!(self.recordUrl)
         }
     }
     
@@ -317,6 +320,16 @@ class ZFJChatInputTool: UIView {
 
         self.myMaskView.layer.frame = CGRect(x: CGFloat(0), y: maskViewY, width: CGFloat(yinjieBtn.frame.size.width), height: CGFloat(yinjieBtn.frame.size.height))
         self.yinjieBtn.layer.mask = self.myMaskView.layer
+    }
+    
+    // MARK: - 获取时间戳
+    func getTheTimestamp() -> String {
+        let dat = Date(timeIntervalSinceNow: 0)
+        let a: TimeInterval = dat.timeIntervalSince1970
+        //  *1000 是精确到毫秒，不乘就是精确到秒
+        let timeString = String(format: "%.0f", a)
+        //转为字符型
+        return timeString
     }
     
     required init?(coder aDecoder: NSCoder) {

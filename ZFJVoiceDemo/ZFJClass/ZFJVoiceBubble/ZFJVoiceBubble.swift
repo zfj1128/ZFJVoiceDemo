@@ -12,7 +12,7 @@ import Foundation
 
 protocol ZFJVoiceBubbleDelegate: NSObjectProtocol {
     func voiceBubbleDidStartPlaying(_ voiceBubble: ZFJVoiceBubble)
-    func voiceBubbleStratOrStop(_ isStart: Bool)
+    func voiceBubbleStratOrStop(_ voiceBubble: ZFJVoiceBubble, _ isStart: Bool)
 }
 
 public let ScreenHeight = UIScreen.main.bounds.size.height
@@ -287,7 +287,7 @@ class ZFJVoiceBubble: UIView,AVAudioPlayerDelegate {
 
     // MARK: - Public
     func startAnimating(){
-        delegate?.voiceBubbleStratOrStop(true)
+        delegate?.voiceBubbleStratOrStop(self,true)
         //添加头部视图
         UIApplication.shared.keyWindow?.addSubview(self.barDownView)
         //启动定时器
@@ -309,7 +309,7 @@ class ZFJVoiceBubble: UIView,AVAudioPlayerDelegate {
     }
     
     func stopAnimating(){
-        delegate?.voiceBubbleStratOrStop(false)
+        delegate?.voiceBubbleStratOrStop(self,false)
         //移除头部视图
         self.barDownView.removeFromSuperview()
         //停止定时器
