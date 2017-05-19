@@ -85,7 +85,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         let textLab = UILabel()
         textLab.text = arr.last as? String
         textLab.textAlignment = NSTextAlignment.right
-        textLab.frame =  CGRect(x: ScreenWidth - CGFloat(160), y: CGFloat(15), width: CGFloat(150), height: CGFloat(30))
+        textLab.frame =  CGRect(x: ScreenWidth - CGFloat(210), y: CGFloat(15), width: CGFloat(200), height: CGFloat(30))
         textLab.font = UIFont(name: "STHeitiSC-Light", size: 14)
         cell.contentView.addSubview(textLab)
     }
