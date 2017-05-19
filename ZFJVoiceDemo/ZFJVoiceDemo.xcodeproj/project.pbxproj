@@ -14,6 +14,7 @@
 		9D1DDAAF1ECE7F8000655DDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDAAD1ECE7F8000655DDE /* LaunchScreen.storyboard */; };
 		9D1DDABA1ECE7F8000655DDE /* ZFJVoiceDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1DDAB91ECE7F8000655DDE /* ZFJVoiceDemoTests.swift */; };
 		9D1DDAC51ECE7F8000655DDE /* ZFJVoiceDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1DDAC41ECE7F8000655DDE /* ZFJVoiceDemoUITests.swift */; };
+		9D1DDAD51ECE81B200655DDE /* ZFJVoiceBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1DDAD41ECE81B200655DDE /* ZFJVoiceBubble.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		9D1DDAC01ECE7F8000655DDE /* ZFJVoiceDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZFJVoiceDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D1DDAC41ECE7F8000655DDE /* ZFJVoiceDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZFJVoiceDemoUITests.swift; sourceTree = "<group>"; };
 		9D1DDAC61ECE7F8000655DDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D1DDAD41ECE81B200655DDE /* ZFJVoiceBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFJVoiceBubble.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		9D1DDA981ECE7F8000655DDE = {
 			isa = PBXGroup;
 			children = (
+				9D1DDAD21ECE811B00655DDE /* ZFJClass */,
 				9D1DDAA31ECE7F8000655DDE /* ZFJVoiceDemo */,
 				9D1DDAB81ECE7F8000655DDE /* ZFJVoiceDemoTests */,
 				9D1DDAC31ECE7F8000655DDE /* ZFJVoiceDemoUITests */,
@@ -123,6 +126,30 @@
 				9D1DDAC61ECE7F8000655DDE /* Info.plist */,
 			);
 			path = ZFJVoiceDemoUITests;
+			sourceTree = "<group>";
+		};
+		9D1DDAD21ECE811B00655DDE /* ZFJClass */ = {
+			isa = PBXGroup;
+			children = (
+				9D1DDAD61ECE92C500655DDE /* images */,
+				9D1DDAD31ECE817A00655DDE /* ZFJVoiceBubble */,
+			);
+			path = ZFJClass;
+			sourceTree = "<group>";
+		};
+		9D1DDAD31ECE817A00655DDE /* ZFJVoiceBubble */ = {
+			isa = PBXGroup;
+			children = (
+				9D1DDAD41ECE81B200655DDE /* ZFJVoiceBubble.swift */,
+			);
+			path = ZFJVoiceBubble;
+			sourceTree = "<group>";
+		};
+		9D1DDAD61ECE92C500655DDE /* images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D1DDAA71ECE7F8000655DDE /* ViewController.swift in Sources */,
+				9D1DDAD51ECE81B200655DDE /* ZFJVoiceBubble.swift in Sources */,
 				9D1DDAA51ECE7F8000655DDE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,6 +542,7 @@
 				9D1DDACB1ECE7F8000655DDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9D1DDACC1ECE7F8000655DDE /* Build configuration list for PBXNativeTarget "ZFJVoiceDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +551,7 @@
 				9D1DDACE1ECE7F8000655DDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9D1DDACF1ECE7F8000655DDE /* Build configuration list for PBXNativeTarget "ZFJVoiceDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +560,7 @@
 				9D1DDAD11ECE7F8000655DDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
