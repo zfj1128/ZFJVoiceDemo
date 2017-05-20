@@ -325,21 +325,27 @@ class ZFJVoiceBubble: UIView,AVAudioPlayerDelegate {
             print("没有设置URL")
             return
         }
-        if !(player?.isPlaying)! {
-            player?.play()
+        
+        if !player.isPlaying{
+            player.play()
             startAnimating()
         }
+        
+//        if !(player?.isPlaying)! {
+//            player?.play()
+//            startAnimating()
+//        }
     }
     
     func pause() {
-        if player.isPlaying {
+        if player != nil &&  player.isPlaying {
             player.pause()
             stopAnimating()
         }
     }
     
     func stop() {
-        if player.isPlaying {
+        if player != nil && player.isPlaying {
             player.stop()
             player.currentTime = 0
             stopAnimating()
