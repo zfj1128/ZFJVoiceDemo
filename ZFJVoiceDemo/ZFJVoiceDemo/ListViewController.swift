@@ -9,6 +9,10 @@
 import UIKit
 
 class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,ZFJVoiceBubbleDelegate {
+    //默认播放了第几个
+    var index: NSInteger = -1
+    
+    var voiceUrl : URL!
     
     lazy var voiceMegBtnArr: NSMutableArray = {
         let arr = NSMutableArray()
@@ -34,6 +38,9 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.view.backgroundColor = UIColor.white
         self.view.addSubview(self.tableView)
         setExtraCellLineHidden(self.tableView)
+        
+        let path: String? = Bundle.main.path(forResource: "1495246312", ofType: "mp3")
+        voiceUrl = URL(fileURLWithPath: path!)
     }
     
     //UITableViewDelegate,UITableViewDataSource
@@ -61,7 +68,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             view.removeFromSuperview()
         }
         //
-        let voiceUrl = URL(string: "http://7xszyu.com1.z0.glb.clouddn.com/media_blog_15456_1495197412.mp3")
+        //let voiceUrl = URL(string: "http://7xszyu.com1.z0.glb.clouddn.com/media_blog_15456_1495197412.mp3")
         let voiceMegBtn : ZFJVoiceBubble!
         if(indexPath.row >= self.voiceMegBtnArr.count || self.voiceMegBtnArr.count == 0){
             //说名没有创建过
@@ -79,11 +86,15 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             //创建过
             voiceMegBtn = self.voiceMegBtnArr[indexPath.row] as! ZFJVoiceBubble
         }
-        cell.contentView.addSubview(voiceMegBtn)
-        let arr: [Any] = voiceUrl!.absoluteString.components(separatedBy: "/")
         
+        if(index == indexPath.row){
+            voiceMegBtn.justStartAnimating()
+        }
+        
+        cell.contentView.addSubview(voiceMegBtn)
+
         let textLab = UILabel()
-        textLab.text = arr.last as? String
+        textLab.text = "语音文件-\(indexPath.row)"
         textLab.textAlignment = NSTextAlignment.right
         textLab.frame =  CGRect(x: ScreenWidth - CGFloat(210), y: CGFloat(15), width: CGFloat(200), height: CGFloat(30))
         textLab.font = UIFont(name: "STHeitiSC-Light", size: 14)
@@ -97,6 +108,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     // MARK: ZFJVoiceBubbleDelegate
     func voiceBubbleStratOrStop(_ voiceBubble: ZFJVoiceBubble, _ isStart: Bool) {
         if(isStart){
+            index = voiceBubble.tag - 100
             //开始
             for index in 0...(voiceMegBtnArr.count - 1) {
                 let otherVoiceMegBtn = self.voiceMegBtnArr[index] as! ZFJVoiceBubble
@@ -106,6 +118,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             }
         }else{
             //结束
+            index = -1
         }
     }
     
@@ -120,7 +133,14 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         tableView.tableFooterView = view
         tableView.tableHeaderView = view
     }
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        for index in 0...(voiceMegBtnArr.count - 1) {
+            let otherVoiceMegBtn = self.voiceMegBtnArr[index] as! ZFJVoiceBubble
+            otherVoiceMegBtn.stop()
+        }
+        super.viewWillDisappear(animated)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

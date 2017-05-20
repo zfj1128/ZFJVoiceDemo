@@ -24,7 +24,6 @@ class ZFJChatInputTool: UIView {
     var rightImg: UIImage?
     //录音存放的路径
     var recordUrl: URL!
-    
     //------------
     //语音界面
     lazy var recordingView: UIView = {
@@ -181,8 +180,6 @@ class ZFJChatInputTool: UIView {
         let session:AVAudioSession = AVAudioSession.sharedInstance()
         //设置录音类型
         try! session.setCategory(AVAudioSessionCategoryPlayAndRecord)
-        //设置支持后台
-        try! session.setActive(true)
         //首先要判断是否允许访问麦克风
         var isAllowed = false
         session.requestRecordPermission { (allowed) in
@@ -199,11 +196,12 @@ class ZFJChatInputTool: UIView {
         }
         
         let recorderSeetingsDic = [
-                AVFormatIDKey: NSNumber(value: kAudioFormatMPEG4AAC),
+                AVFormatIDKey: NSNumber(value: kAudioFormatLinearPCM),//
+                AVSampleRateKey : 11025.0, //录音器每秒采集的录音样本数
+                //AVEncoderBitRateKey : 320000,
                 AVNumberOfChannelsKey: 2, //录音的声道数，立体声为双声道
-                AVEncoderAudioQualityKey : AVAudioQuality.max.rawValue,
-                AVEncoderBitRateKey : 320000,
-                AVSampleRateKey : 44100.0 //录音器每秒采集的录音样本数
+                AVLinearPCMBitDepthKey : 16,
+                AVEncoderAudioQualityKey : AVAudioQuality.max.rawValue
         ] as [String : Any]
         
         //语音地址
@@ -249,6 +247,8 @@ class ZFJChatInputTool: UIView {
     }
     
     func longPress(_ press: UILongPressGestureRecognizer) {
+        let session:AVAudioSession = AVAudioSession.sharedInstance()
+        try! session.setCategory(AVAudioSessionCategoryPlayAndRecord)
         if(press.state == UIGestureRecognizerState.began){
             self.callView.isHidden = false
             recorder!.prepareToRecord()//准备录音
@@ -292,6 +292,8 @@ class ZFJChatInputTool: UIView {
     }
     
     func endPress(){
+        let session:AVAudioSession = AVAudioSession.sharedInstance()
+        try! session.setCategory(AVAudioSessionCategoryPlayback)
         self.pressView.text = "按住  说话"
         self.pressView.textColor = UIColor(red: CGFloat(0.592), green: CGFloat(0.592), blue: CGFloat(0.592), alpha: CGFloat(1.00))
         if(endState == 0){

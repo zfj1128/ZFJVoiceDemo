@@ -33,6 +33,7 @@
 		9D1DDAFA1ECEE81300655DDE /* ZFJVolumeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDAEA1ECEE81300655DDE /* ZFJVolumeIcon@2x.png */; };
 		9D1DDAFB1ECEE81300655DDE /* ZFJVolumeIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDAEB1ECEE81300655DDE /* ZFJVolumeIcon@3x.png */; };
 		9D1DDB011ECF04A200655DDE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1DDB001ECF04A200655DDE /* ListViewController.swift */; };
+		9D1DDB0A1ECFDDF400655DDE /* 1495246312.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9D1DDB091ECFDDF400655DDE /* 1495246312.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		9D1DDAEA1ECEE81300655DDE /* ZFJVolumeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJVolumeIcon@2x.png"; sourceTree = "<group>"; };
 		9D1DDAEB1ECEE81300655DDE /* ZFJVolumeIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZFJVolumeIcon@3x.png"; sourceTree = "<group>"; };
 		9D1DDB001ECF04A200655DDE /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		9D1DDB091ECFDDF400655DDE /* 1495246312.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 1495246312.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 		9D1DDAD61ECE92C500655DDE /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9D1DDB091ECFDDF400655DDE /* 1495246312.mp3 */,
 				9D1DDADC1ECEE81300655DDE /* ZFJKeyBoardBtn@2x.png */,
 				9D1DDADD1ECEE81300655DDE /* ZFJKeyBoardBtn@3x.png */,
 				9D1DDADE1ECEE81300655DDE /* ZFJLeftCamraBtn@2x.png */,
@@ -341,6 +344,7 @@
 				9D1DDAF21ECEE81300655DDE /* ZFJLeftVoiceBtn@2x.png in Resources */,
 				9D1DDAF91ECEE81300655DDE /* ZFJRightImg@3x.png in Resources */,
 				9D1DDAAA1ECE7F8000655DDE /* Main.storyboard in Resources */,
+				9D1DDB0A1ECFDDF400655DDE /* 1495246312.mp3 in Resources */,
 				9D1DDAF51ECEE81300655DDE /* ZFJMicrophoneIcon@3x.png in Resources */,
 				9D1DDAFB1ECEE81300655DDE /* ZFJVolumeIcon@3x.png in Resources */,
 			);

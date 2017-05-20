@@ -154,15 +154,13 @@ class ZFJVoiceBubble: UIView,AVAudioPlayerDelegate {
                     self.asset = nil
                     return
                 }
-                if self.player == nil {
-                    do {
-                        let data = try Data(contentsOf: self.contentURL)
-                        self.player = try AVAudioPlayer(data: data)
-                        self.player.delegate = self
-                    }catch {
-                        print("出现异常:%@",error)
-                        return
-                    }
+                do {
+                    let data = try Data(contentsOf: self.contentURL)
+                    self.player = try AVAudioPlayer(data: data)
+                    self.player.delegate = self
+                }catch {
+                    print("出现异常:%@",error)
+                    return
                 }
                 self.player.prepareToPlay()
                 DispatchQueue.main.async(execute: {() -> Void in
@@ -292,6 +290,10 @@ class ZFJVoiceBubble: UIView,AVAudioPlayerDelegate {
         UIApplication.shared.keyWindow?.addSubview(self.barDownView)
         //启动定时器
         startTimer()
+        justStartAnimating()
+    }
+    
+    func justStartAnimating(){
         let image0: UIImage! = UIImage.init(named: "fs_icon_wave_0")
         let image1: UIImage! = UIImage.init(named: "fs_icon_wave_1")
         let image2: UIImage! = UIImage.init(named: "fs_icon_wave_2")
