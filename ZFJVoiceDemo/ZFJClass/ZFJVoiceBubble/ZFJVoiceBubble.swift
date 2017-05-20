@@ -281,6 +281,9 @@ class ZFJVoiceBubble: UIView,AVAudioPlayerDelegate {
 
     // MARK: - Public
     func startAnimating(){
+        let session:AVAudioSession = AVAudioSession.sharedInstance()
+        try! session.setCategory(AVAudioSessionCategoryPlayback)
+        
         delegate?.voiceBubbleStratOrStop(self,true)
         //添加头部视图
         UIApplication.shared.keyWindow?.addSubview(self.barDownView)

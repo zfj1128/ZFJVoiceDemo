@@ -178,7 +178,7 @@ class ZFJChatInputTool: UIView {
         //初始化录音器
         let session:AVAudioSession = AVAudioSession.sharedInstance()
         //设置录音类型
-        try! session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+        try! session.setCategory(AVAudioSessionCategoryPlayback)
         //首先要判断是否允许访问麦克风
         var isAllowed = false
         session.requestRecordPermission { (allowed) in
