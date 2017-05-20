@@ -15,11 +15,9 @@ let KBothSidesBtn_WID : CGFloat = 36        //左右两边按钮的宽高
 let KCallViewWID : CGFloat = 166
 
 typealias sendOutBtnClick = (_ voiceUrl: URL) -> Void
-typealias startRecording = () -> Void
 
 class ZFJChatInputTool: UIView {
     var sendURLAction: sendOutBtnClick?
-    var startRecordingAction: startRecording?
     //左边按钮的图片
     var leftImg: UIImage?
     //右边按钮的图片
@@ -248,8 +246,6 @@ class ZFJChatInputTool: UIView {
     }
     // MARK: - 长按开始录音 手势判断
     func longPress(_ press: UILongPressGestureRecognizer) {
-        self.startRecordingAction!()
-        
         let session:AVAudioSession = AVAudioSession.sharedInstance()
         try! session.setCategory(AVAudioSessionCategoryPlayAndRecord)
         if(press.state == UIGestureRecognizerState.began){
