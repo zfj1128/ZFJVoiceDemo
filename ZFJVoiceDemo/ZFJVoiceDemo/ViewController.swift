@@ -38,6 +38,7 @@ class ViewController: UIViewController,ZFJVoiceBubbleDelegate {
         voiceMegBtn.isHaveBar = true
         voiceMegBtn.userName = "墨小北"
         voiceMegBtn.isUserInteractionEnabled = false
+        voiceMegBtn.isShowLeftImg = true
         view.addSubview(voiceMegBtn)
         
         let backBtn = UIButton(type: .custom)

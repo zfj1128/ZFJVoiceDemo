@@ -49,7 +49,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 80
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,13 +70,20 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         let voiceMegBtn : ZFJVoiceBubble!
         if(indexPath.row >= self.voiceMegBtnArr.count || self.voiceMegBtnArr.count == 0){
             //没有创建过
-            let myFrame = CGRect(x: CGFloat(10), y: CGFloat(15), width: CGFloat(150), height: CGFloat(30))
+            let myFrame: CGRect = CGRect(x: CGFloat(10), y: CGFloat(10), width: CGFloat(150), height: CGFloat(30))
             voiceMegBtn = ZFJVoiceBubble.init(frame: myFrame)
             voiceMegBtn.contentURL = voiceUrl
             voiceMegBtn.isHaveBar = true
             voiceMegBtn.userName = "张福杰"
             voiceMegBtn.delegate = self
             voiceMegBtn.tag = 100 + indexPath.row
+            if indexPath.row % 2 == 0{
+                voiceMegBtn.isInvert = true
+                voiceMegBtn.frame = CGRect(x: ScreenWidth - CGFloat(160), y: CGFloat(10), width: CGFloat(150), height: CGFloat(30))
+            }else{
+                
+            }
+            
             if !voiceMegBtnArr.contains(voiceMegBtn) {
                 voiceMegBtnArr.add(voiceMegBtn)
             }
@@ -93,10 +100,16 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 
         let textLab = UILabel()
         textLab.text = "语音文件-\(indexPath.row)"
-        textLab.textAlignment = NSTextAlignment.right
-        textLab.frame =  CGRect(x: ScreenWidth - CGFloat(210), y: CGFloat(15), width: CGFloat(200), height: CGFloat(30))
         textLab.font = UIFont(name: "STHeitiSC-Light", size: 14)
         cell.contentView.addSubview(textLab)
+        
+        if indexPath.row % 2 == 0{
+            textLab.textAlignment = NSTextAlignment.right
+            textLab.frame =  CGRect(x: ScreenWidth - CGFloat(217), y: CGFloat(50), width: CGFloat(200), height: CGFloat(20))
+        }else{
+            textLab.textAlignment = NSTextAlignment.left
+            textLab.frame =  CGRect(x: CGFloat(17), y: CGFloat(50), width: CGFloat(200), height: CGFloat(20))
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -106,7 +119,6 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     // MARK: ZFJVoiceBubbleDelegate
     func voiceBubbleStratOrStop(_ voiceBubble: ZFJVoiceBubble, _ isStart: Bool) {
         if(isStart){
-            index = voiceBubble.tag - 100
             //开始
             for index in 0...(voiceMegBtnArr.count - 1) {
                 let otherVoiceMegBtn = self.voiceMegBtnArr[index] as! ZFJVoiceBubble
@@ -121,7 +133,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     
     func voiceBubbleDidStartPlaying(_ voiceBubble: ZFJVoiceBubble) {
-        NSLog("voiceBubbleDidStartPlaying")
+        index = voiceBubble.tag - 100
     }
     
     // MARK: - 隐藏多余的cell分界面

@@ -215,7 +215,7 @@ class ZFJChatInputTool: UIView {
         recorder?.isMeteringEnabled = true
         //语音相关控件
         addSubview(self.recordingView)
-        self.recordingView.isHidden = true
+        self.recordingView.isHidden = false
         self.recordingView.addSubview(self.keyBoardBtn)
         
         let inputBoxBtn_WID: CGFloat = ScreenWidth - KZFJChatInputTool_Space * 3 - KBothSidesBtn_WID
