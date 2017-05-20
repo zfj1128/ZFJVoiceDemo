@@ -17,6 +17,7 @@ class ViewController: UIViewController,ZFJVoiceBubbleDelegate {
         disposeChatInputToolReturnData()
     }
     
+    // MARK: - 底部录音控件
     func disposeChatInputToolReturnData() {
         weak var weakSelf = self
         let myFrame = CGRect(x: 0, y: ScreenHeight - CGFloat(49), width: ScreenWidth, height: CGFloat(49))
@@ -31,7 +32,7 @@ class ViewController: UIViewController,ZFJVoiceBubbleDelegate {
     
     func uiConfig(){
         self.title = "首页"
-        let myFrame = CGRect(x: CGFloat((ScreenWidth - 250) / 2), y: CGFloat(200), width: CGFloat(150), height: CGFloat(30))
+        let myFrame = CGRect(x: CGFloat((ScreenWidth - 250) / 2) + 50, y: CGFloat(200), width: CGFloat(150), height: CGFloat(30))
         voiceMegBtn = ZFJVoiceBubble.init(frame: myFrame)
         voiceMegBtn.delegate = self
         voiceMegBtn.isHaveBar = true
@@ -46,6 +47,14 @@ class ViewController: UIViewController,ZFJVoiceBubbleDelegate {
         let backItem = UIBarButtonItem(customView: backBtn)
         navigationItem.rightBarButtonItem = backItem
         backBtn.addTarget(self, action: #selector(backBtnPush), for: .touchUpInside)
+        
+        let lab = UILabel()
+        lab.frame = CGRect(x: 0, y: CGFloat(260), width: ScreenWidth, height: CGFloat(30))
+        lab.text = "请先进行录音，才能点击进行播放"
+        lab.textAlignment = NSTextAlignment.center
+        lab.font = UIFont(name: "STHeitiSC-Light", size: CGFloat(22))
+        lab.textColor = UIColor(red: CGFloat(0.071), green: CGFloat(0.588), blue: CGFloat(0.859), alpha: CGFloat(1.00))
+        view.addSubview(lab)
     }
     
     func backBtnPush(){
@@ -60,6 +69,11 @@ class ViewController: UIViewController,ZFJVoiceBubbleDelegate {
     
     func voiceBubbleDidStartPlaying(_ voiceBubble: ZFJVoiceBubble) {
         NSLog("voiceBubbleDidStartPlaying")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        voiceMegBtn.stop()
+        super.viewWillDisappear(animated)
     }
 
     override func didReceiveMemoryWarning() {

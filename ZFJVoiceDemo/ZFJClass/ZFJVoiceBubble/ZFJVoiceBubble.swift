@@ -100,7 +100,7 @@ class ZFJVoiceBubble: UIView,AVAudioPlayerDelegate {
         }
     }
     
-    //头部视图相关
+    // MARK: - 头部视图相关
     lazy var barDownView: UIView = {
         let barView = UIView()
         barView.frame = CGRect(x: 0, y: (self.isHaveBar ?64:0), width: ScreenWidth, height: KBarDownView)
@@ -185,7 +185,7 @@ class ZFJVoiceBubble: UIView,AVAudioPlayerDelegate {
         }
     }
     
-    //是否翻转显示
+    // MARK: - 是否翻转显示
     var isInvert: Bool{
         didSet{
             self.setNeedsLayout()
@@ -200,11 +200,7 @@ class ZFJVoiceBubble: UIView,AVAudioPlayerDelegate {
         super.init(frame: frame)
         initialize()
     }
-    
-    ///Users/zfj/Desktop/ZFJVoiceDemo/ZFJVoiceDemo/ZFJClass/ZFJVoiceBubble/ZFJVoiceBubble.swift:60:15: Property 'self.isHaveBar' not initialized at super.init call
-    
-    
-    
+
     func initialize() {
         clipsToBounds = false
         
@@ -292,7 +288,7 @@ class ZFJVoiceBubble: UIView,AVAudioPlayerDelegate {
         startTimer()
         justStartAnimating()
     }
-    
+    // MARK: - 开始动画
     func justStartAnimating(){
         let image0: UIImage! = UIImage.init(named: "fs_icon_wave_0")
         let image1: UIImage! = UIImage.init(named: "fs_icon_wave_1")
@@ -309,7 +305,7 @@ class ZFJVoiceBubble: UIView,AVAudioPlayerDelegate {
             self.barTitleImg.startAnimating()
         }
     }
-    
+    // MARK: - 停止动画
     func stopAnimating(){
         delegate?.voiceBubbleStratOrStop(self,false)
         //移除头部视图

@@ -15,9 +15,11 @@ let KBothSidesBtn_WID : CGFloat = 36        //左右两边按钮的宽高
 let KCallViewWID : CGFloat = 166
 
 typealias sendOutBtnClick = (_ voiceUrl: URL) -> Void
+typealias startRecording = () -> Void
 
 class ZFJChatInputTool: UIView {
     var sendURLAction: sendOutBtnClick?
+    var startRecordingAction: startRecording?
     //左边按钮的图片
     var leftImg: UIImage?
     //右边按钮的图片
@@ -114,9 +116,10 @@ class ZFJChatInputTool: UIView {
     }()
 
     func lefyImgBtnClick(_ button: UIButton) {
-        presentAlertController()
+        print("选择照片，这里面就不写了")
     }
-    //右边选择语言的按钮
+    
+    // MARK: - 右边选择语言的按钮
     lazy var rightImgBtn: UIButton = {
         let rightBtn = UIButton()
         rightBtn.frame = CGRect(x: CGFloat(ScreenWidth - KBothSidesBtn_WID - KZFJChatInputTool_Space), y: CGFloat((KZFJChatInputTool_HEI - KBothSidesBtn_WID) / 2), width: CGFloat(KBothSidesBtn_WID), height: CGFloat(KBothSidesBtn_WID))
@@ -130,7 +133,7 @@ class ZFJChatInputTool: UIView {
         self.recordingView.isHidden = false
     }
     
-    //输入框按钮
+    // MARK: - 输入框按钮
     lazy var inputBoxBtn: UIButton = {
         let inputBtn = UIButton()
         var inputBoxBtn_WID: CGFloat = ScreenWidth - KZFJChatInputTool_Space * 4 - KBothSidesBtn_WID * 2
@@ -155,7 +158,7 @@ class ZFJChatInputTool: UIView {
         super.init(frame: frame)
         initUI()
     }
-    
+    // MARK: - 初始化UI
     func initUI(){
         backgroundColor = UIColor(red: CGFloat(0.976), green: CGFloat(0.976), blue: CGFloat(0.976), alpha: CGFloat(1.00))
         layer.borderColor = UIColor(red: CGFloat(0.847), green: CGFloat(0.847), blue: CGFloat(0.847), alpha: CGFloat(1.00)).cgColor
@@ -170,8 +173,6 @@ class ZFJChatInputTool: UIView {
     func showInputView() {
         print("显示输入框，这里面就不写了")
     }
-
-    func presentAlertController(){}
     
     // MARK: - 以下是录音相关
     func setRecordingAbout(){
@@ -245,8 +246,10 @@ class ZFJChatInputTool: UIView {
         self.myMaskView.frame = CGRect(x: CGFloat(self.imgView.frame.maxX + 10), y: CGFloat((KCallViewWID - 40 - 20) / 2 + 15), width: CGFloat(20), height: CGFloat(0))
         self.callView.addSubview(self.myMaskView)
     }
-    
+    // MARK: - 长按开始录音 手势判断
     func longPress(_ press: UILongPressGestureRecognizer) {
+        self.startRecordingAction!()
+        
         let session:AVAudioSession = AVAudioSession.sharedInstance()
         try! session.setCategory(AVAudioSessionCategoryPlayAndRecord)
         if(press.state == UIGestureRecognizerState.began){
@@ -290,7 +293,7 @@ class ZFJChatInputTool: UIView {
             endPress()
         }
     }
-    
+    // MARK: - 结束录音
     func endPress(){
         let session:AVAudioSession = AVAudioSession.sharedInstance()
         try! session.setCategory(AVAudioSessionCategoryPlayback)

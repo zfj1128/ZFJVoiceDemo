@@ -43,7 +43,7 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         voiceUrl = URL(fileURLWithPath: path!)
     }
     
-    //UITableViewDelegate,UITableViewDataSource
+    // MARK: - UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 30;
     }
@@ -56,7 +56,6 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: TableSampleIdentifier)
         if cell == nil {
             cell = UITableViewCell(style: .value1, reuseIdentifier: TableSampleIdentifier)
-            //cell?.selectionStyle = UITableViewCellSelectionStyle.none
             cell?.textLabel?.font = UIFont.systemFont(ofSize: CGFloat(16))
         }
         setTableViewCell(cell: cell!, indexPath: indexPath)
@@ -67,11 +66,10 @@ class ListViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         for view: UIView in cell.contentView.subviews {
             view.removeFromSuperview()
         }
-        //
         //let voiceUrl = URL(string: "http://7xszyu.com1.z0.glb.clouddn.com/media_blog_15456_1495197412.mp3")
         let voiceMegBtn : ZFJVoiceBubble!
         if(indexPath.row >= self.voiceMegBtnArr.count || self.voiceMegBtnArr.count == 0){
-            //说名没有创建过
+            //没有创建过
             let myFrame = CGRect(x: CGFloat(10), y: CGFloat(15), width: CGFloat(150), height: CGFloat(30))
             voiceMegBtn = ZFJVoiceBubble.init(frame: myFrame)
             voiceMegBtn.contentURL = voiceUrl
